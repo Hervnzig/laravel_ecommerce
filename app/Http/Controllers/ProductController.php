@@ -60,10 +60,45 @@ class ProductController extends Controller
 
     public function edit($id){
         $product = Product::find($id);
-        return view('admin.products.details', compact('product'));
+        return view('admin.products.edit', compact('product'));
     }
 
     public function update(Request $request, $id){
-        return $id;
+
+        // Find the product
+        $product = Product::find($id);
+
+        // Validate the form
+        $request->validate([
+            'name'=>'required',
+            'price'=>'required',
+            'description'=>'required'
+        ]);
+
+        // Check if there is any image
+        if($request->hasFile('image')){
+            if(file_exists(public_path('uploads/') . $product->image)){
+                unlink(public_path('uploads/') . $product->image);
+            }
+        }
+
+        // Uploading new image
+        $image = $request->image;
+        $image->move('uploads', $image->getClientOriginalName());
+        $product->image = $request->image->getClientOriginalName();
+
+        // Updating product
+        $product->update([
+            'name'=> $request->name,
+            'price'=> $request->price,
+            'description'=> $request->description,
+            'image'=> $product->image
+        ]);
+
+        // Store a message in session
+        $request->session()->flash('msg', 'product has been updatd');
+
+        // Redirect back
+        return redirect('/products');
     }
 }

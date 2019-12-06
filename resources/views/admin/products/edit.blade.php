@@ -18,7 +18,7 @@
                 <ol>
             @endif -->
             <div class="content">
-                {!! Form::open(['url' => 'products', 'files'=>'true']) !!}
+                {!! Form::open(['url' => ['products', $product->id], 'files'=>'true', 'method'=>'put']) !!}
                     <div class="row">
                         <div class="col-md-12">
                             @include('admin.products._fields')
