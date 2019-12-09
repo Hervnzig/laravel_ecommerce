@@ -31,8 +31,8 @@ Route::prefix('admin')->group(function(){
     Route::resource('/users', 'UsersController');
 
     // Admin Login
-    Route::get('/admin/login', 'AdminUserController@index');
-    Route::post('/admin/login', 'AdminUserController@store');
+    Route::get('/login', 'AdminUserController@index');
+    Route::post('/login', 'AdminUserController@store');
 
 });
 
