@@ -132,5 +132,5 @@
         </div>
     </div>
 </div>
-<a href="{{ url('/orders') }}" class="btn btn-success"> Back to orders page</a>
+<a href="{{ url('/admin/orders') }}" class="btn btn-success"> Back to orders page</a>
 @endsection

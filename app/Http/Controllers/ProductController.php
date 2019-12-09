@@ -45,7 +45,7 @@ class ProductController extends Controller
         $request->session()->flash('msg', 'Your product has been added');
 
         // redirect the page
-        return redirect('products/create');
+        return redirect('/admin/products/create');
     }
 
     public function destroy($id){
@@ -56,7 +56,7 @@ class ProductController extends Controller
         session()->flash('msg', 'Product has been deleted');
 
         // Redirect back
-        return redirect('/products');
+        return redirect('admin/products');
     }
 
     public function edit($id){
@@ -100,7 +100,7 @@ class ProductController extends Controller
         $request->session()->flash('msg', 'product has been updatd');
 
         // Redirect back
-        return redirect('/products');
+        return redirect('admin/products');
     }
 
     public function show($id){

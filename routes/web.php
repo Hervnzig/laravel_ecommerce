@@ -11,20 +11,31 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+/*
+ * Admin Routes
+ */
 
-// dashboard
-Route::get('/', 'DashboardController@index');
+Route::prefix('admin')->group(function(){
+    // dashboard
+    Route::get('/', 'DashboardController@index');
 
-// product
-Route::resource('/products', 'ProductController');
+    // product
+    Route::resource('/products', 'ProductController');
 
-// orders
-Route::resource('/orders', 'OrderController');
-Route::get('/confirm/{id}', 'OrderController@confirm')->name('order.confirm');
-Route::get('/pending/{id}', 'OrderController@pending')->name('order.pending');
+    // orders
+    Route::resource('/orders', 'OrderController');
+    Route::get('/confirm/{id}', 'OrderController@confirm')->name('order.confirm');
+    Route::get('/pending/{id}', 'OrderController@pending')->name('order.pending');
 
-// Users
-Route::resource('/users', 'UsersController');
+    // Users
+    Route::resource('/users', 'UsersController');
+
+    // Admin Login
+    Route::get('/admin/login', 'AdminUserController@index');
+    Route::post('/admin/login', 'AdminUserController@store');
+
+});
+
+/*
+ * Frontend Routes
+ */
